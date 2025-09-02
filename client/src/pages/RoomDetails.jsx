@@ -123,6 +123,7 @@ const RoomDetails = () => {
                     </div>
                 </div>
             </div>
+            <button className='bg-gray-800 hover:bg-gray-900 active:scale-95 transition-all duration-300 text-white rounded-xl shadow-lg hover:shadow-xl max-md:w-full max-md:mt-6 md:px-8 py-3 md:py-4 text-base font-semibold cursor-pointer'>Contact Now</button>
         </div>
 
     </div>
