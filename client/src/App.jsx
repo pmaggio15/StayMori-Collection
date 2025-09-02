@@ -11,11 +11,16 @@ import Layout from './pages/hotelOwner/Layout';
 import Dashboard from './pages/hotelOwner/Dashboard';
 import AddRoom from './pages/hotelOwner/AddRoom';
 import ListRoom from './pages/hotelOwner/ListRoom';
+import SearchResults from './components/SearchResults';
+import Hero from './components/Hero';
+import { useState } from 'react';
+import AddRooms from './pages/AllRooms';
 
 
 const App = () => {
 
   const isOwnerPath = useLocation().pathname.includes("owner");
+
 
   return (
     <div>
@@ -24,9 +29,10 @@ const App = () => {
       <div className='min-h-[70vh]'>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path="/search" element={<SearchResults />} />
           <Route path='/rooms' element={<AllRooms />} />
           <Route path='/rooms/:id' element={<RoomDetails />} />
-          <Route path='/my-bookings' element={<MyBookings />} />
+          <Route path='/my-bookings' element={<MyBookings />} />  
           <Route path='/owner' element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="add-room" element={<AddRoom />} />
