@@ -137,7 +137,7 @@ const Navbar = ({ onOpenHotelReg }) => {
                 :
                 (<button onClick={openSignIn} className={`px-6 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg ${
                     isScrolled 
-                        ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-blue-600/25' 
+                        ? 'bg-slate-600 text-white hover:bg-slate-700 shadow-gray-600/25' 
                         : 'bg-white text-gray-900 hover:bg-gray-100 shadow-white/25'
                 }`}>
                     Sign In
