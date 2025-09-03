@@ -9,12 +9,12 @@ const BookIcon = () => (
     </svg>
 )
 
-const Navbar = () => {
+const Navbar = ({ onOpenHotelReg }) => {
     const navLinks = [
-        { name: 'Home', path: '/' },
-        { name: 'Hotels', path: '/rooms' },
-        { name: 'Experience', path: '/experience' },
-        { name: 'About', path: '/about' },
+        { name: 'Home', path: '/', type: 'link' },
+        { name: 'Hotels', path: '/rooms', type: 'link' },
+        { name: 'Experience', path: '/experience', type: 'link' },
+        { name: 'Register', action: onOpenHotelReg, type: 'button' },
     ];
 
     const [isScrolled, setIsScrolled] = React.useState(false);
@@ -70,23 +70,36 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
                 {navLinks.map((link, i) => (
-                    <Link 
-                        key={i} 
-                        to={link.path} 
-                        className={`relative group py-2 px-1 text-medium font-medium transition-colors duration-300 ${
-                            isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white hover:text-white'
-                        }`}
-                    >
-                        {link.name}
-                        <div className={`absolute bottom-0 left-0 w-0 h-0.5 rounded-full transition-all duration-300 group-hover:w-full ${
-                            isScrolled ? 'bg-blue-600' : 'bg-white'
-                        }`} />
-                    </Link>
+                    link.type === 'link' ? (
+                        <Link 
+                            key={i} 
+                            to={link.path} 
+                            className={`relative group py-2 px-1 text-medium font-medium transition-colors duration-300 ${
+                                isScrolled ? 'text-gray-700 hover:text-slate-600' : 'text-white hover:text-white'
+                            }`}
+                        >
+                            {link.name}
+                            <div className={`absolute bottom-0 left-0 w-0 h-0.5 rounded-full transition-all duration-300 group-hover:w-full ${
+                                isScrolled ? 'bg-slate-500' : 'bg-white'
+                            }`} />
+                        </Link>
+                    ) : (
+                        <button 
+                            key={i} 
+                            onClick={link.action}
+                            className={`relative group py-2 px-1 text-medium font-medium transition-colors duration-300 ${
+                                isScrolled ? 'text-gray-700 hover:text-slate-600' : 'text-white hover:text-white'
+                            }`}
+                        >
+                            {link.name}
+                            <div className={`absolute bottom-0 left-0 w-0 h-0.5 rounded-full transition-all duration-300 group-hover:w-full ${
+                                isScrolled ? 'bg-slate-500' : 'bg-white'
+                            }`} />
+                        </button>
+                    )
                 ))}
             </div>
 
-            {/* Desktop Actions */}
-            <div className="hidden lg:flex items-center space-x-4">
             {/* Desktop Actions */}
             <div className="hidden lg:flex items-center space-x-4">
                 {/* Search Button */}
@@ -131,7 +144,6 @@ const Navbar = () => {
                     Sign In
                 </button>)
                 }
-            </div>
             </div>
 
             {/* Mobile Menu Button and User Button */}
@@ -219,14 +231,27 @@ const Navbar = () => {
                 <div className="flex flex-col h-full">
                     <div className="flex-1 py-6 overflow-y-auto min-h-0">
                         {navLinks.map((link, i) => (
-                            <Link 
-                                key={i} 
-                                to={link.path} 
-                                onClick={() => setIsMenuOpen(false)}
-                                className="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200 font-medium"
-                            >
-                                {link.name}
-                            </Link>
+                            link.type === 'link' ? (
+                                <Link 
+                                    key={i} 
+                                    to={link.path} 
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200 font-medium"
+                                >
+                                    {link.name}
+                                </Link>
+                            ) : (
+                                <button 
+                                    key={i} 
+                                    onClick={() => {
+                                        setIsMenuOpen(false);
+                                        link.action();
+                                    }}
+                                    className="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200 font-medium w-full text-left"
+                                >
+                                    {link.name}
+                                </button>
+                            )
                         ))}
                         
                         {/* Only show Dashboard if user is logged in */}
