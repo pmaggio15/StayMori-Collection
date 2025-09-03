@@ -235,7 +235,7 @@ const Navbar = ({ onOpenHotelReg }) => {
                                     key={i} 
                                     to={link.path} 
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200 font-medium"
+                                    className="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-slate-600 transition-colors duration-200 font-medium"
                                 >
                                     {link.name}
                                 </Link>
@@ -246,7 +246,7 @@ const Navbar = ({ onOpenHotelReg }) => {
                                         setIsMenuOpen(false);
                                         link.action();
                                     }}
-                                    className="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200 font-medium w-full text-left"
+                                    className="flex items-center px-6 py-4 text-gray-700 hover:bg-gray-50 hover:text-slate-600 transition-colors duration-200 font-medium w-full text-left"
                                 >
                                     {link.name}
                                 </button>
