@@ -118,8 +118,7 @@ const Navbar = ({ onOpenHotelReg }) => {
 
                 {/* Dashboard Link */}
                 <Link 
-                    to="/dashboard"
-                    className={`px-4 py-2 text-sm font-medium rounded-xl border transition-all duration-300 hover:scale-105 ${
+                    className={`cursor-not-allowed px-4 py-2 text-sm font-medium rounded-xl border transition-all duration-300 hover:scale-105 ${
                         isScrolled 
                             ? 'border-gray-300 text-gray-700 hover:bg-gray-50' 
                             : 'border-white/30 text-white hover:bg-white/10'

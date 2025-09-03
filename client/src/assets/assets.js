@@ -130,23 +130,58 @@ export const userDummyData = {
 }
 
 // Hotel Dummy Data
-export const hotelDummyData = {
+export const hotelDummyData = [{
     "_id": "67f76393197ac559e4089b72",
-    "name": "Urbanza Suites",
-    "address": "Main Road  123 Street , 23 Colony",
+    "name": "The Aurelia Regent",
+    "address": "123 Fictional Ave, Apt 5B, New York, NY 10011, USA",
     "contact": "+0123456789",
     "owner": userDummyData,
     "city": "New York",
     "createdAt": "2025-04-10T06:22:11.663Z",
     "updatedAt": "2025-04-10T06:22:11.663Z",
     "__v": 0
-}
+},
+{
+    "_id": "67f76393197ac559e4089b73",
+    "name": "Velorum Grand Palace",
+    "address": "78 Imaginary Road, #12-34, Singapore 123456",
+    "contact": "+0123456789",
+    "owner": userDummyData,
+    "city": "Singapore",
+    "createdAt": "2025-04-10T06:22:11.663Z",
+    "updatedAt": "2025-04-10T06:22:11.663Z",
+    "__v": 0
+},
+{
+    "_id": "67f76393197ac559e4089b74",
+    "name": "Maison Étoile Noir",
+    "address": "456 Sample Blvd, Suite 210, Los Angeles, CA 90028, USA",
+    "contact": "+0123456789",
+    "owner": userDummyData,
+    "city": "California",
+    "createdAt": "2025-04-10T06:22:11.663Z",
+    "updatedAt": "2025-04-10T06:22:11.663Z",
+    "__v": 0
+},
+{
+    "_id": "67f76393197ac559e4089b75",
+    "name": "The Solstice Marquise",
+    "address": "9 Crescent, Downtown Dubai, Dubai, United Arab Emirates",
+    "contact": "+0123456789",
+    "owner": userDummyData,
+    "city": "Dubai",
+    "createdAt": "2025-04-10T06:22:11.663Z",
+    "updatedAt": "2025-04-10T06:22:11.663Z",
+    "__v": 0
+},
+]
+
 
 // Rooms Dummy Data
 export const roomsDummyData = [
     {
         "_id": "67f7647c197ac559e4089b96",
-        "hotel": hotelDummyData,
+        "hotel": hotelDummyData[0],
         "roomType": "Double Bed",
         "pricePerNight": 399,
         "amenities": ["Room Service", "Mountain View", "Pool Access"],
@@ -158,7 +193,7 @@ export const roomsDummyData = [
     },
     {
         "_id": "67f76452197ac559e4089b8e",
-        "hotel": hotelDummyData,
+        "hotel": hotelDummyData[1],
         "roomType": "Double Bed",
         "pricePerNight": 299,
         "amenities": ["Room Service", "Mountain View", "Pool Access"],
@@ -170,7 +205,7 @@ export const roomsDummyData = [
     },
     {
         "_id": "67f76406197ac559e4089b82",
-        "hotel": hotelDummyData,
+        "hotel": hotelDummyData[2],
         "roomType": "Double Bed",
         "pricePerNight": 249,
         "amenities": ["Free WiFi", "Free Breakfast", "Room Service"],
@@ -182,7 +217,7 @@ export const roomsDummyData = [
     },
     {
         "_id": "67f763d8197ac559e4089b7a",
-        "hotel": hotelDummyData,
+        "hotel": hotelDummyData[3],
         "roomType": "Single Bed",
         "pricePerNight": 199,
         "amenities": ["Free WiFi", "Room Service", "Pool Access"],
@@ -202,7 +237,7 @@ export const userBookingsDummyData = [
         "_id": "67f76839994a731e97d3b8ce",
         "user": userDummyData,
         "room": roomsDummyData[1],
-        "hotel": hotelDummyData,
+        "hotel": hotelDummyData[1],
         "checkInDate": "2025-04-30T00:00:00.000Z",
         "checkOutDate": "2025-05-01T00:00:00.000Z",
         "totalPrice": 299,
@@ -218,7 +253,7 @@ export const userBookingsDummyData = [
         "_id": "67f76829994a731e97d3b8c3",
         "user": userDummyData,
         "room": roomsDummyData[0],
-        "hotel": hotelDummyData,
+        "hotel": hotelDummyData[0],
         "checkInDate": "2025-04-27T00:00:00.000Z",
         "checkOutDate": "2025-04-28T00:00:00.000Z",
         "totalPrice": 399,
@@ -234,7 +269,7 @@ export const userBookingsDummyData = [
         "_id": "67f76810994a731e97d3b8b4",
         "user": userDummyData,
         "room": roomsDummyData[3],
-        "hotel": hotelDummyData,
+        "hotel": hotelDummyData[3],
         "checkInDate": "2025-04-11T00:00:00.000Z",
         "checkOutDate": "2025-04-12T00:00:00.000Z",
         "totalPrice": 199,
