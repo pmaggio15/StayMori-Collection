@@ -29,6 +29,8 @@ const App = () => {
   const closeHotelReg = () => {
     setShowHotelReg(false);
   };
+  
+
 
   return (
     <div>
