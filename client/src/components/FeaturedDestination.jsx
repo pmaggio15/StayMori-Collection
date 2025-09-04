@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import HotelCard from './HotelCard'
 import Title from './Title'
 import { useNavigate } from 'react-router-dom'
 import {assets} from '../assets/assets.js'
-import React, { useState, useEffect } from 'react'
 
 const FeaturedDestination = () => {
     const navigate = useNavigate()
