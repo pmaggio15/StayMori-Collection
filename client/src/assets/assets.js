@@ -39,8 +39,6 @@ import totalBookingIcon from "./totalBookingIcon.svg";
 import totalRevenueIcon from "./totalRevenueIcon.svg";
 import ownerImg from './ownerImg.png'
 
-
-
 export const assets = {
     logo,
     searchIcon,
@@ -106,6 +104,12 @@ export const facilityIcons = {
     "Mountain View": assets.mountainIcon,
     "Pool Access": assets.poolIcon,
 };
+
+export const dashboardDummyData = [
+  { id: 1, hotel: "Hotel Lumière", bookings: 32, revenue: 5240, occupancy: 81 },
+  { id: 2, hotel: "Skyline Suites", bookings: 18, revenue: 3110, occupancy: 67 },
+  { id: 3, hotel: "Seaside Resort", bookings: 25, revenue: 4520, occupancy: 74 },
+];
 
 // For Room Details Page
 export const roomCommonData = [

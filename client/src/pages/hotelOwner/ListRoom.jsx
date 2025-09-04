@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { assets, roomsData } from '../../assets/assets'
+import { assets } from '../../assets/assets'
 import Title from '../../components/Title'
 
 const ListRoom = () => {
