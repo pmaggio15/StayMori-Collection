@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 // Amadeus API configuration
 const AMADEUS_CLIENT_ID = process.env.AMADEUS_CLIENT_ID;
 const AMADEUS_CLIENT_SECRET = process.env.AMADEUS_CLIENT_SECRET;
@@ -21,6 +19,7 @@ async function getAccessToken() {
     return tokenCache.token;
   }
 
+  // Use native fetch (available in Node.js 18+)
   const response = await fetch(`${AMADEUS_BASE_URL}/v1/security/oauth2/token`, {
     method: 'POST',
     headers: {
@@ -34,7 +33,8 @@ async function getAccessToken() {
   });
 
   if (!response.ok) {
-    throw new Error(`Failed to get access token: ${response.status}`);
+    const errorText = await response.text();
+    throw new Error(`Failed to get access token: ${response.status} - ${errorText}`);
   }
 
   const data = await response.json();
@@ -67,16 +67,19 @@ async function searchHotels({ cityCode, checkInDate, checkOutDate, adults = 2 })
   });
 
   if (!response.ok) {
-    throw new Error(`Amadeus API error: ${response.status}`);
+    const errorText = await response.text();
+    throw new Error(`Amadeus API error: ${response.status} - ${errorText}`);
   }
 
   return await response.json();
 }
 
-export default async function handler(req, res) {
+
+
+module.exports = async function handler(req, res) {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', req.headers.origin || '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
   res.setHeader(
     'Access-Control-Allow-Headers',
@@ -97,7 +100,12 @@ export default async function handler(req, res) {
     if (!AMADEUS_CLIENT_ID || !AMADEUS_CLIENT_SECRET) {
       return res.status(500).json({ 
         error: 'Amadeus credentials not configured',
-        details: 'Please set AMADEUS_CLIENT_ID and AMADEUS_CLIENT_SECRET environment variables'
+        details: 'Please set AMADEUS_CLIENT_ID and AMADEUS_CLIENT_SECRET environment variables',
+        env_check: {
+          hasClientId: !!AMADEUS_CLIENT_ID,
+          hasClientSecret: !!AMADEUS_CLIENT_SECRET,
+          amadeus_env: AMADEUS_ENV
+        }
       });
     }
 
@@ -169,4 +177,4 @@ export default async function handler(req, res) {
       timestamp: new Date().toISOString(),
     });
   }
-}
+};
