@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { cities, roomsDummyData } from "../assets/assets";
+import { cities, roomsData } from "../assets/assets";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Hero = () => {
     e.preventDefault();
 
     // Filter rooms (adjust logic as needed)
-    let filteredRooms = roomsDummyData.filter((room) => {
+    let filteredRooms = roomsData.filter((room) => {
       const cityMatch =
         !searchData.destination ||
         room.hotel.city.toLowerCase().includes(searchData.destination.toLowerCase());
@@ -25,7 +25,7 @@ const Hero = () => {
     });
 
     if (!searchData.destination) {
-      filteredRooms = roomsDummyData.filter((room) => room.isAvailable);
+      filteredRooms = roomsData.filter((room) => room.isAvailable);
     }
 
     // Navigate to /search with data in navigation state

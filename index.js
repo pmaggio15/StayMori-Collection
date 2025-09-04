@@ -305,7 +305,6 @@ const CITY_CODES = {
   'amsterdam': 'AMS',
   'berlin': 'BER',
   'miami': 'MIA',
-  // Add more city mappings based on your dummy data
   'dubai': 'DXB',
   'singapore': 'SIN',
   'california': 'LAX'

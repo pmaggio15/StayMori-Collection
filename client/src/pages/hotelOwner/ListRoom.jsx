@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { assets, roomsDummyData } from '../../assets/assets'
+import { assets, roomsData } from '../../assets/assets'
 import Title from '../../components/Title'
 
 const ListRoom = () => {
-    const [rooms, setRooms] = useState(roomsDummyData)
+    const [rooms, setRooms] = useState(roomsData)
 
     return (
         <div>
