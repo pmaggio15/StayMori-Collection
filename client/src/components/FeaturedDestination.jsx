@@ -1,13 +1,40 @@
 import React from 'react'
-import { roomsDummyData } from '../assets/assets'
 import HotelCard from './HotelCard'
 import Title from './Title'
 import { useNavigate } from 'react-router-dom'
 import {assets} from '../assets/assets.js'
+import React, { useState, useEffect } from 'react'
 
 const FeaturedDestination = () => {
     const navigate = useNavigate()
-    
+
+    const [featuredRooms, setFeaturedRooms] = useState([]);
+
+        useEffect(() => {
+            fetchFeaturedRooms();
+        }, []);
+
+    const fetchFeaturedRooms = async () => {
+        try {
+            const response = await fetch('/api/amadeus/hotels?cityCode=NYC');
+            const data = await response.json();
+            const convertedRooms = data.data.slice(0, 4).map(hotel => ({
+                _id: hotel.hotel.hotelId,
+                hotel: {
+                    name: hotel.hotel.name,
+                    address: hotel.hotel.address?.cityName || 'Featured Location'
+                },
+                pricePerNight: hotel.offers?.[0]?.price?.total || 200,
+                images: ['/assets/hotel-placeholder.jpg']
+            }));
+            setFeaturedRooms(convertedRooms);
+        } catch (error) {
+            console.error('Failed to fetch featured rooms:', error);
+            setFeaturedRooms([]);
+        }
+    };
+
+
     return (
         <section className='relative py-24 md:py-32 bg-gradient-to-b from-white to-gray-50/50 overflow-hidden'>
             {/* Background Pattern */}
@@ -30,7 +57,7 @@ const FeaturedDestination = () => {
 
                 {/* Hotels Grid */}
                 <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16'>
-                    {roomsDummyData.slice(0, 4).map((room, index) => (
+                    {featuredRooms.slice(0, 4).map((room, index) => (
                         <div 
                             key={room._id} 
                             className="group transform transition-all duration-300 hover:scale-105 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl animate-fadeInUp"

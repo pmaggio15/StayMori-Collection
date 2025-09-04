@@ -40,6 +40,7 @@ import totalRevenueIcon from "./totalRevenueIcon.svg";
 import ownerImg from './ownerImg.png'
 
 
+
 export const assets = {
     logo,
     searchIcon,
@@ -78,7 +79,7 @@ export const assets = {
 
 export const cities = [
     "Dubai",
-    "Singapore",
+    "Singapore", 
     "New York",
     "London",
 ];
@@ -86,7 +87,7 @@ export const cities = [
 // Exclusive Offers Dummy Data
 export const exclusiveOffers = [
     { _id: 1, title: "Summer Bliss Retreat", description: "Extend your stay with complimentary breakfast and seasonal perks.", priceOff: 20, expiryDate: "Aug 31", image: exclusiveOfferCardImg1 },
-    { _id: 2, title: "Romance by Design", description: "A couples’ escape with spa indulgence and memorable touches.", priceOff: 25, expiryDate: "Sep 20", image: exclusiveOfferCardImg2 },
+    { _id: 2, title: "Romance by Design", description: "A couples' escape with spa indulgence and memorable touches.", priceOff: 25, expiryDate: "Sep 20", image: exclusiveOfferCardImg2 },
     { _id: 3, title: "Luxury Redefined Deal", description: "Book early and unlock exclusive savings at our worldwide luxury destinations.", priceOff: 30, expiryDate: "Oct 15", image: exclusiveOfferCardImg3 },
 ]
 
@@ -114,181 +115,7 @@ export const roomCommonData = [
     { icon: assets.heartIcon, title: "Smooth Check-In", description: "100% of guests gave check-in a 5-star rating." },
 ];
 
-// User Dummy Data
-export const userDummyData = {
-    "_id": "user_2unqyL4diJFP1E3pIBnasc7w8hP",
-    "username": "StayMori",
-    "email": "user.staymori@yahoo.com",
-    "image": ownerImg,
-    "role": "hotelOwner",
-    "createdAt": "2025-03-25T09:29:16.367Z",
-    "updatedAt": "2025-04-10T06:34:48.719Z",
-    "__v": 1,
-    "recentSearchedCities": [
-        "New York"
-    ]
-}
-
-// Hotel Dummy Data
-export const hotelDummyData = [{
-    "_id": "67f76393197ac559e4089b72",
-    "name": "The Aurelia Regent",
-    "address": "123 Fictional Ave, Apt 5B, New York, NY 10011, USA",
-    "contact": "+0123456789",
-    "owner": userDummyData,
-    "city": "New York",
-    "createdAt": "2025-04-10T06:22:11.663Z",
-    "updatedAt": "2025-04-10T06:22:11.663Z",
-    "__v": 0
-},
-{
-    "_id": "67f76393197ac559e4089b73",
-    "name": "Velorum Grand Palace",
-    "address": "78 Imaginary Road, #12-34, Singapore 123456",
-    "contact": "+0123456789",
-    "owner": userDummyData,
-    "city": "Singapore",
-    "createdAt": "2025-04-10T06:22:11.663Z",
-    "updatedAt": "2025-04-10T06:22:11.663Z",
-    "__v": 0
-},
-{
-    "_id": "67f76393197ac559e4089b74",
-    "name": "Maison Étoile Noir",
-    "address": "456 Sample Blvd, Suite 210, Los Angeles, CA 90028, USA",
-    "contact": "+0123456789",
-    "owner": userDummyData,
-    "city": "California",
-    "createdAt": "2025-04-10T06:22:11.663Z",
-    "updatedAt": "2025-04-10T06:22:11.663Z",
-    "__v": 0
-},
-{
-    "_id": "67f76393197ac559e4089b75",
-    "name": "The Solstice Marquise",
-    "address": "9 Crescent, Downtown Dubai, Dubai, United Arab Emirates",
-    "contact": "+0123456789",
-    "owner": userDummyData,
-    "city": "Dubai",
-    "createdAt": "2025-04-10T06:22:11.663Z",
-    "updatedAt": "2025-04-10T06:22:11.663Z",
-    "__v": 0
-},
-]
-
-
-// Rooms Dummy Data
-export const roomsDummyData = [
-    {
-        "_id": "67f7647c197ac559e4089b96",
-        "hotel": hotelDummyData[0],
-        "roomType": "Double Bed",
-        "pricePerNight": 399,
-        "amenities": ["Room Service", "Mountain View", "Pool Access"],
-        "images": [roomImg1, roomImg2, roomImg3, roomImg4],
-        "isAvailable": true,
-        "createdAt": "2025-04-10T06:26:04.013Z",
-        "updatedAt": "2025-04-10T06:26:04.013Z",
-        "__v": 0
-    },
-    {
-        "_id": "67f76452197ac559e4089b8e",
-        "hotel": hotelDummyData[1],
-        "roomType": "Double Bed",
-        "pricePerNight": 299,
-        "amenities": ["Room Service", "Mountain View", "Pool Access"],
-        "images": [roomImg2, roomImg3, roomImg4, roomImg1],
-        "isAvailable": true,
-        "createdAt": "2025-04-10T06:25:22.593Z",
-        "updatedAt": "2025-04-10T06:25:22.593Z",
-        "__v": 0
-    },
-    {
-        "_id": "67f76406197ac559e4089b82",
-        "hotel": hotelDummyData[2],
-        "roomType": "Double Bed",
-        "pricePerNight": 249,
-        "amenities": ["Free WiFi", "Free Breakfast", "Room Service"],
-        "images": [roomImg3, roomImg4, roomImg1, roomImg2],
-        "isAvailable": true,
-        "createdAt": "2025-04-10T06:24:06.285Z",
-        "updatedAt": "2025-04-10T06:24:06.285Z",
-        "__v": 0
-    },
-    {
-        "_id": "67f763d8197ac559e4089b7a",
-        "hotel": hotelDummyData[3],
-        "roomType": "Single Bed",
-        "pricePerNight": 199,
-        "amenities": ["Free WiFi", "Room Service", "Pool Access"],
-        "images": [roomImg4, roomImg1, roomImg2, roomImg3],
-        "isAvailable": true,
-        "createdAt": "2025-04-10T06:23:20.252Z",
-        "updatedAt": "2025-04-10T06:23:20.252Z",
-        "__v": 0
-    }
-]
-
-
-
-// User Bookings Dummy Data
-export const userBookingsDummyData = [
-    {
-        "_id": "67f76839994a731e97d3b8ce",
-        "user": userDummyData,
-        "room": roomsDummyData[1],
-        "hotel": hotelDummyData[1],
-        "checkInDate": "2025-04-30T00:00:00.000Z",
-        "checkOutDate": "2025-05-01T00:00:00.000Z",
-        "totalPrice": 299,
-        "guests": 1,
-        "status": "pending",
-        "paymentMethod": "Stripe",
-        "isPaid": true,
-        "createdAt": "2025-04-10T06:42:01.529Z",
-        "updatedAt": "2025-04-10T06:43:54.520Z",
-        "__v": 0
-    },
-    {
-        "_id": "67f76829994a731e97d3b8c3",
-        "user": userDummyData,
-        "room": roomsDummyData[0],
-        "hotel": hotelDummyData[0],
-        "checkInDate": "2025-04-27T00:00:00.000Z",
-        "checkOutDate": "2025-04-28T00:00:00.000Z",
-        "totalPrice": 399,
-        "guests": 1,
-        "status": "pending",
-        "paymentMethod": "Pay At Hotel",
-        "isPaid": false,
-        "createdAt": "2025-04-10T06:41:45.873Z",
-        "updatedAt": "2025-04-10T06:41:45.873Z",
-        "__v": 0
-    },
-    {
-        "_id": "67f76810994a731e97d3b8b4",
-        "user": userDummyData,
-        "room": roomsDummyData[3],
-        "hotel": hotelDummyData[3],
-        "checkInDate": "2025-04-11T00:00:00.000Z",
-        "checkOutDate": "2025-04-12T00:00:00.000Z",
-        "totalPrice": 199,
-        "guests": 1,
-        "status": "pending",
-        "paymentMethod": "Pay At Hotel",
-        "isPaid": false,
-        "createdAt": "2025-04-10T06:41:20.501Z",
-        "updatedAt": "2025-04-10T06:41:20.501Z",
-        "__v": 0
-    }
-]
-
-// Dashboard Dummy Data
-export const dashboardDummyData = {
-    "totalBookings": 3,
-    "totalRevenue": 897,
-    "bookings": userBookingsDummyData
-}
+// REMOVED ALL HOTEL/ROOM DUMMY DATA - USE API INSTEAD
 
 // --------- SVG code for Book Icon------
 /* 

@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react'
-import { assets, facilityIcons, roomsDummyData } from '../assets/assets'
+import React, { useState, useEffect, useMemo } from 'react'
+import { assets, facilityIcons } from '../assets/assets'
 import { useNavigate } from 'react-router-dom'
 import StarRating from '../components/StarRating';
 
@@ -66,6 +66,44 @@ const AllRooms = () => {
     const [selectedRanges, setSelectedRanges] = useState([]);
     const [sortOption, setSortOption] = useState("");
 
+
+    const [roomsData, setRoomsData] = useState([]);
+const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+    fetchRooms();
+}, []);
+
+const fetchRooms = async () => {
+    try {
+        setLoading(true);
+        const response = await fetch('/api/amadeus/hotels?cityCode=NYC');
+        const data = await response.json();
+        // Convert API data to match your room structure
+        const convertedRooms = data.data.map(hotel => ({
+            _id: hotel.hotel.hotelId,
+            hotel: {
+                name: hotel.hotel.name,
+                city: hotel.hotel.address?.cityName || 'Unknown',
+                address: hotel.hotel.address ? 
+                    `${hotel.hotel.address.lines?.[0] || ''}, ${hotel.hotel.address.cityName || ''}` : 
+                    'Address not available'
+            },
+            roomType: hotel.offers?.[0]?.room?.typeEstimated?.category || 'Standard',
+            pricePerNight: hotel.offers?.[0]?.price?.total || 200,
+            amenities: ['Free WiFi', 'Room Service', 'Pool Access'],
+            images: ['/assets/hotel-placeholder.jpg'], // You'll need to add a placeholder image
+            isAvailable: true,
+            createdAt: new Date().toISOString()
+        }));
+        setRoomsData(convertedRooms);
+    } catch (error) {
+        console.error('Failed to fetch rooms:', error);
+        setRoomsData([]); // Empty array if API fails
+    } finally {
+        setLoading(false);
+    }
+};
     // Filter handlers
     const handleTypeChange = (checked, type) => {
         setSelectedTypes(prev => 
@@ -97,7 +135,7 @@ const AllRooms = () => {
 
     // Apply filters and sorting
     const filteredRooms = useMemo(() => {
-        let list = [...roomsDummyData];
+        let list = [...roomsData];
 
         // Filter by room type
         if (selectedTypes.length > 0) {
@@ -113,6 +151,7 @@ const AllRooms = () => {
                 })
             );
         }
+        
 
         // Sort results
         if (sortOption === "Price Low to High") {
@@ -122,6 +161,7 @@ const AllRooms = () => {
         } else if (sortOption === "Newest First") {
             list.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         }
+        
 
         return list;
     }, [selectedTypes, selectedRanges, sortOption]);
@@ -149,7 +189,7 @@ const AllRooms = () => {
                     
                     {/* Results count */}
                     <div className='mt-2 text-sm text-gray-600'>
-                        Showing {filteredRooms.length} of {roomsDummyData.length} rooms
+                        Showing {filteredRooms.length} of {roomsData.length} rooms
                     </div>
                 </div>
 

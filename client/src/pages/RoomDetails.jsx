@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { facilityIcons, roomCommonData, roomsDummyData } from '../assets/assets'
+import { facilityIcons, roomCommonData } from '../assets/assets'
 import StarRating from '../components/StarRating'
 import { assets } from '../assets/assets'
 
@@ -16,11 +16,44 @@ const RoomDetails = () => {
         guests: 1
     })
 
-    useEffect(() => {
-        const room = roomsDummyData.find(room => room._id === id)
-        room && setRoom(room)
-        room && setMainImage(room.images[0])
-    }, [id])
+   useEffect(() => {
+    fetchRoomDetails()
+}, [id])
+
+const fetchRoomDetails = async () => {
+    try {
+        // For now, fetch from hotels API and find matching hotel
+        const response = await fetch('/api/amadeus/hotels?cityCode=NYC')
+        const data = await response.json()
+        
+        // Find hotel that matches the ID
+        const foundHotel = data.data.find(hotel => hotel.hotel.hotelId === id)
+        
+        if (foundHotel) {
+            const roomData = {
+                _id: foundHotel.hotel.hotelId,
+                hotel: {
+                    name: foundHotel.hotel.name,
+                    address: foundHotel.hotel.address ? 
+                        `${foundHotel.hotel.address.lines?.[0] || ''}, ${foundHotel.hotel.address.cityName || ''}` : 
+                        'Address not available',
+                    owner: {
+                        image: '/assets/hotel-placeholder.jpg' // You'll need a default owner image
+                    }
+                },
+                roomType: foundHotel.offers?.[0]?.room?.typeEstimated?.category || 'Standard',
+                pricePerNight: foundHotel.offers?.[0]?.price?.total || 200,
+                amenities: ['Free WiFi', 'Room Service', 'Pool Access'],
+                images: ['/assets/hotel-placeholder.jpg'], // You'll need placeholder images
+                isAvailable: true
+            }
+            setRoom(roomData)
+            setMainImage(roomData.images[0])
+        }
+    } catch (error) {
+        console.error('Failed to fetch room details:', error)
+    }
+}
 
     const handleInputChange = (e) => {
         const { name, value } = e.target
